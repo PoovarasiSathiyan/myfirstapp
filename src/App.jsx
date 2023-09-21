@@ -1,6 +1,7 @@
 import Card from './Card'
-
+import {useState} from 'react'
 function App() {
+  let [count,setCount] = useState(0)//Hooks - it is a function
   const data = [
     {
       plan:"FREE",
@@ -63,21 +64,31 @@ function App() {
       reportsEnabler:true
     }
   ]
-  return (
-    <>
+  return ( 
+    <>  
       <section className="pricing py-5">
-  <div className="container">
-    <div className="row">
+    <div className="container">
+      <div className="row">
       {
         data.map((e,i)=>{
           return <Card data = {e} key = {i}/>
+          {/* Sending data to card component via props */}
           
         })
       }
       </div>
-  </div>
-</section>
+      <div>
+        <button className='btn btn-danger'
+        onClick={()=>{
+          setCount(++count)
+          console.log(count)
+        }}
+        >Click Me, I was already clicked {count} times</button>
+      </div>
+    </div>
+  </section>
     </>
   )
 }
+
 export default App
